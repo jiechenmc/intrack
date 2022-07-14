@@ -1,25 +1,25 @@
-import type { Component } from 'solid-js';
-
-import logo from './logo.svg';
-import styles from './App.module.css';
+import { Component, createSignal } from "solid-js";
+import { RowElements } from "./RowElement";
+import Table from "./Table";
 
 const App: Component = () => {
+  const [data, setData] = createSignal([
+    {
+      count: 1,
+      applied: true,
+      assessed: true,
+      company: "Apple",
+      position: "SWE",
+      area: "SB, NY",
+      link: "...",
+      lastContact: "TODAY",
+    },
+  ] as RowElements[]);
+
   return (
-    <div class={styles.App}>
-      <header class={styles.header}>
-        <img src={logo} class={styles.logo} alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          class={styles.link}
-          href="https://github.com/solidjs/solid"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn Solid
-        </a>
-      </header>
+    <div>
+      <form></form>
+      <Table data={data()} />
     </div>
   );
 };
