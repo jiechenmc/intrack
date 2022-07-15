@@ -2,10 +2,12 @@ import { Component } from "solid-js";
 import RowElement, { RowElements } from "./RowElement";
 
 interface TableProps {
-  data: RowElements[];
+  data: { [key: string]: RowElements[] };
 }
 
 const Table: Component<TableProps> = ({ data }: TableProps) => {
+  const res: RowElements[] = data.posts;
+
   return (
     <div class="overflow-x-auto">
       <table class="table table-compact w-full text-center">
@@ -19,13 +21,14 @@ const Table: Component<TableProps> = ({ data }: TableProps) => {
             <th>Area</th>
             <th>Link</th>
             <th>Last Contact</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
-          {data.map((e) => {
+          {res.map((e) => {
             return (
               <RowElement
-                count={e?.count}
+                id={e?.id}
                 applied={e?.applied}
                 assessed={e?.assessed}
                 company={e?.company}
@@ -47,6 +50,7 @@ const Table: Component<TableProps> = ({ data }: TableProps) => {
             <th>Area</th>
             <th>Link</th>
             <th>Last Contact</th>
+            <th></th>
           </tr>
         </tfoot>
       </table>
