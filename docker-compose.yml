@@ -7,6 +7,8 @@ services:
       - app
     ports:
       - 80:80
+    volumes:
+      - .:/client
 
   app:
     container_name: flask
