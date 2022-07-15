@@ -1,3 +1,3 @@
-git fetch && git reset origin/main --hard
+git fetch && git reset origin/master --hard
 docker compose -f docker-compose.prod.yml down
 docker compose -f docker-compose.prod.yml up --build -d
