@@ -12,7 +12,7 @@ services:
     container_name: flask
     build: ./app
     environment:
-      - FLASK_ENV=development
+      - FLASK_ENV=production
 
   nginx:
     container_name: nginx
@@ -22,8 +22,6 @@ services:
     ports:
       - 80:80
       - 443:443
-    env_file:
-      - .env
     volumes:
       - nginx_secrets:/etc/letsencrypt
       - ./prod_conf.d:/etc/nginx/user_conf.d
