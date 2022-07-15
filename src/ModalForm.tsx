@@ -1,71 +1,65 @@
 import { Component } from "solid-js";
-interface ModalFormProps {
-  onSubmit: (e: Event) => void;
-}
-const ModalForm: Component<ModalFormProps> = ({ onSubmit }: ModalFormProps) => {
+
+const handleSubmit = (e: Event) => {
+  let payload = new FormData(e.target as unknown as HTMLFormElement);
+  e.preventDefault();
+  fetch("/api/create", {
+    method: "POST",
+    body: payload,
+  });
+  location.reload();
+};
+
+const ModalForm: Component = () => {
   return (
-    <form onSubmit={onSubmit}>
-      <div class="flex flex-col">
+    <div class="my-4">
+      <form onSubmit={handleSubmit} class="flex flex-col gap-2">
         <div class="flex gap-2">
           <label for="applied">Applied</label>
           <input name="applied" type="checkbox" class="checkbox" />
           <label for="assessed">Assessed</label>
           <input name="assessed" type="checkbox" class="checkbox" />
         </div>
-        <div class="flex flex-col">
-          <label for="company">Company Name: </label>
+
+        <div class="flex gap-2">
           <input
             name="company"
             type="text"
-            placeholder="Type here"
+            placeholder="Company ..."
             class="input input-bordered input-info w-full max-w-xs"
           />
-        </div>
-        <div class="flex flex-col">
-          <label for="position">Position: </label>
+
           <input
             name="position"
             type="text"
-            placeholder="Type here"
+            placeholder="Position ..."
             class="input input-bordered input-info w-full max-w-xs"
           />
-        </div>
-
-        <div class="flex flex-col">
-          <label for="area">Area: </label>
           <input
             name="area"
             type="text"
-            placeholder="Type here"
+            placeholder="Area ..."
             class="input input-bordered input-info w-full max-w-xs"
           />
-        </div>
-
-        <div class="flex flex-col">
-          <label for="link">Link: </label>
           <input
             name="link"
             type="text"
-            placeholder="Type here"
+            placeholder="Link ..."
             class="input input-bordered input-info w-full max-w-xs"
           />
-        </div>
-
-        <div class="flex flex-col">
-          <label for="lastContact">Last Contact: </label>
           <input
             name="lastContact"
-            type="text"
-            placeholder="Type here"
+            type="date"
+            placeholder="Last contact ..."
             class="input input-bordered input-info w-full max-w-xs"
           />
         </div>
 
         <button class="btn btn-outline btn-info my-2" type="submit">
-          Submit
+          Add
         </button>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 };
 

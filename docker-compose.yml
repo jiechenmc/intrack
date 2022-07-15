@@ -14,4 +14,4 @@ services:
     container_name: flask
     build: ./app
     environment:
-      - FLASK_ENV=development
+      - FLASK_ENV=production
