@@ -1,0 +1,35 @@
+version: '3'
+services:
+  solid:
+    container_name: solidjs
+    build: .
+    depends_on:
+      - app
+    ports:
+      - 80:80
+
+  app:
+    container_name: flask
+    build: ./app
+    environment:
+      - FLASK_ENV=development
+
+  nginx:
+    container_name: nginx
+    image: jonasal/nginx-certbot
+    environment:
+      - CERTBOT_EMAIL=jiechenmc@gmail.com
+    ports:
+      - 80:80
+      - 443:443
+    env_file:
+      - .env
+    volumes:
+      - nginx_secrets:/etc/letsencrypt
+      - ./prod_conf.d:/etc/nginx/user_conf.d
+    depends_on:
+      - solid
+      - app
+
+volumes:
+  nginx_secrets:
