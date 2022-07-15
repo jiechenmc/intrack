@@ -1,14 +1,16 @@
-FROM node:buster
+FROM node AS build
 
-WORKDIR /client
-
-COPY package.json .
-COPY package-lock.json .
-
+WORKDIR /client/src
+COPY package.json ./
+COPY package-lock.json ./
 RUN npm install
 
 COPY . .
 
-CMD ["npm", "run", "dev", "--", "--host"]
+RUN npm run build
 
-EXPOSE 3000
+FROM nginx:stable-alpine
+COPY --from=build /client/src/dist /usr/share/nginx/html
+COPY --from=build /client/src/nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
