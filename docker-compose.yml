@@ -1,0 +1,22 @@
+version: '3'
+services:
+  solid:
+    container_name: solidjs
+    build: .
+    depends_on:
+      - app
+
+  app:
+    container_name: flask
+    build: ./app
+    environment:
+      - FLASK_ENV=development
+
+  nginx:
+    container_name: nginx
+    build: ./nginx
+    ports:
+      - 80:80
+    depends_on:
+      - app
+      - solid
