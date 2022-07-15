@@ -18,9 +18,7 @@ const Table: Component<TableProps> = ({ data }: TableProps) => {
             <th>Assessment</th>
             <th>Company</th>
             <th>Position</th>
-            <th>Area</th>
-            <th>Link</th>
-            <th>Last Contact</th>
+            <th>Date Applied</th>
             <th></th>
           </tr>
         </thead>
@@ -33,8 +31,6 @@ const Table: Component<TableProps> = ({ data }: TableProps) => {
                 assessed={e?.assessed}
                 company={e?.company}
                 position={e?.position}
-                area={e?.area}
-                link={e?.link}
                 lastContact={e?.lastContact}
               />
             );
@@ -47,9 +43,7 @@ const Table: Component<TableProps> = ({ data }: TableProps) => {
             <th>Assessment</th>
             <th>Company</th>
             <th>Position</th>
-            <th>Area</th>
-            <th>Link</th>
-            <th>Last Contact</th>
+            <th>Date Applied</th>
             <th></th>
           </tr>
         </tfoot>

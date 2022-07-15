@@ -27,37 +27,26 @@ const ModalForm: Component = () => {
             type="text"
             placeholder="Company ..."
             class="input input-bordered input-info w-full max-w-xs"
+            required
           />
-
           <input
             name="position"
             type="text"
             placeholder="Position ..."
             class="input input-bordered input-info w-full max-w-xs"
-          />
-          <input
-            name="area"
-            type="text"
-            placeholder="Area ..."
-            class="input input-bordered input-info w-full max-w-xs"
-          />
-          <input
-            name="link"
-            type="text"
-            placeholder="Link ..."
-            class="input input-bordered input-info w-full max-w-xs"
+            required
           />
           <input
             name="lastContact"
             type="date"
-            placeholder="Last contact ..."
+            placeholder="Date Applied"
             class="input input-bordered input-info w-full max-w-xs"
+            required
           />
+          <button class="btn btn-outline btn-info" type="submit">
+            Add
+          </button>
         </div>
-
-        <button class="btn btn-outline btn-info my-2" type="submit">
-          Add
-        </button>
       </form>
     </div>
   );

@@ -1,5 +1,4 @@
-from turtle import position
-from flask import Flask, jsonify, request
+from flask import Flask, request
 from peewee import *
 from playhouse.shortcuts import model_to_dict
 
@@ -13,8 +12,6 @@ class JobEntry(Model):
     assessed = IntegerField()
     company = TextField()
     position = TextField()
-    area = TextField()
-    link = TextField()
     lastContact = TextField()
 
     class Meta:
@@ -46,8 +43,6 @@ def create():
                             assessed=assessed,
                             company=data["company"],
                             position=data["position"],
-                            area=data["area"],
-                            link=data["link"],
                             lastContact=data["lastContact"])
     entry.save()
     return model_to_dict(entry)
