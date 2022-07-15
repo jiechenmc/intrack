@@ -5,6 +5,8 @@ services:
     build: .
     depends_on:
       - app
+    volumes:
+      - .:/client
 
   app:
     container_name: flask
